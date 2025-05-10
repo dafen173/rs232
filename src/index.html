@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Optoma Projector Control</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Optoma Projector Control</h1>
+        
+        <div class="section">
+            <h2>Connection</h2>
+            <select id="serialPorts"></select>
+            <button id="connectBtn">Connect</button>
+            <div id="connectionStatus">Disconnected</div>
+        </div>
+        
+        <div class="section">
+            <h2>Power</h2>
+            <button id="powerOn">Power On</button>
+            <button id="powerOff">Power Off</button>
+        </div>
+        
+        <div class="section">
+            <h2>Input</h2>
+            <button id="hdmi1">HDMI 1</button>
+            <button id="hdmi2">HDMI 2</button>
+        </div>
+        
+        <div id="log"></div>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>
