@@ -9,31 +9,32 @@ on:
 jobs:
   build:
     runs-on: windows-latest
-
     steps:
-    - uses: actions/checkout@v4.1.1  # Pinned version
+    - uses: actions/checkout@v4
 
     - name: Install Node.js
-      uses: actions/setup-node@v4.0.0  # Pinned version
+      uses: actions/setup-node@v4
       with:
         node-version: '20'
 
     - name: Install Rust
-      uses: actions-rs/toolchain@v1.0.6  # Pinned version
+      uses: actions-rs/toolchain@v1
       with:
         profile: minimal
+        toolchain: stable
         target: x86_64-pc-windows-gnu
-        toolchain: stable  # Add this line
         override: true
 
+    - name: Install Dependencies
+      run: |
+        npm install
+        npm install @tauri-apps/cli
+
     - name: Build with Tauri
-      uses: tauri-apps/tauri-action@v0.5.0  # Pinned version
-      with:
-        target: x86_64-pc-windows-gnu
-        args: --verbose
+      run: npx tauri build --target x86_64-pc-windows-gnu --verbose
 
     - name: Upload Artifact
-      uses: actions/upload-artifact@v4.3.3  # Pinned version
+      uses: actions/upload-artifact@v4
       with:
         name: Windows-App
         path: |
