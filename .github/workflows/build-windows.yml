@@ -27,7 +27,7 @@ jobs:
         override: true
 
     - name: Build with Tauri
-      uses: tauri-apps/tauri-action@v1
+      uses: tauri-apps/tauri-action@v0
       with:
         target: x86_64-pc-windows-gnu  # Build for Windows
         args: --verbose  # Show detailed logs
