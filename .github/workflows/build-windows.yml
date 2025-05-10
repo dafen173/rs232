@@ -30,10 +30,19 @@ jobs:
         npm install
         npm install @tauri-apps/cli
 
+    - name: Clean previous builds
+      run: |
+        cd src-tauri
+        cargo clean
+        rm -f Cargo.lock
+        cd ..
+
     - name: Build with Tauri
       run: |
         npm install
         npm install @tauri-apps/cli
+        # Force clean resource generation
+        rm -rf src-tauri/target/x86_64-pc-windows-gnu/release/build/
         npx tauri build --target x86_64-pc-windows-gnu --verbose
       env:
         CARGO_TARGET_X86_64_PC_WINDOWS_GNU_LINKER: x86_64-w64-mingw32-gcc
