@@ -23,6 +23,7 @@ jobs:
       with:
         profile: minimal
         target: x86_64-pc-windows-gnu
+        toolchain: stable  # Add this line
         override: true
 
     - name: Build with Tauri
