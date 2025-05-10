@@ -37,13 +37,27 @@ jobs:
         if (Test-Path Cargo.lock) { Remove-Item Cargo.lock -Force }
         cd ..
 
+    # - name: Build with Tauri
+    #   run: |
+    #     npm install
+    #     npm install @tauri-apps/cli
+    #     # Use PowerShell Remove-Item instead of rm
+    #     Remove-Item -Recurse -Force src-tauri/target/x86_64-pc-windows-gnu/release/build/ -ErrorAction SilentlyContinue
+    #     npx tauri build --target x86_64-pc-windows-gnu --verbose
+
+
     - name: Build with Tauri
+      shell: bash
       run: |
         npm install
         npm install @tauri-apps/cli
-        # Use PowerShell Remove-Item instead of rm
-        Remove-Item -Recurse -Force src-tauri/target/x86_64-pc-windows-gnu/release/build/ -ErrorAction SilentlyContinue
+        # Clean problematic paths
+        rm -rf src-tauri/target/x86_64-pc-windows-gnu/release/build/optoma-controller-*
+        # Build with explicit linker flags
+        RUSTFLAGS="-C linker=x86_64-w64-mingw32-gcc -C link-arg=-Wl,--allow-multiple-definition" \
         npx tauri build --target x86_64-pc-windows-gnu --verbose
+
+        
 
     - name: Upload Artifact
       uses: actions/upload-artifact@v4
