@@ -31,7 +31,13 @@ jobs:
         npm install @tauri-apps/cli
 
     - name: Build with Tauri
-      run: npx tauri build --target x86_64-pc-windows-gnu --verbose
+      run: |
+        npm install
+        npm install @tauri-apps/cli
+        npx tauri build --target x86_64-pc-windows-gnu --verbose
+      env:
+        CARGO_TARGET_X86_64_PC_WINDOWS_GNU_LINKER: x86_64-w64-mingw32-gcc
+        RUSTFLAGS: "-C target-feature=+crt-static"
 
     - name: Upload Artifact
       uses: actions/upload-artifact@v4
