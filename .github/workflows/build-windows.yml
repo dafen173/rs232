@@ -2,38 +2,37 @@ name: Build Windows App
 
 on:
   push:
-    branches: [ "main" ]  # Runs when you push to main branch
-  pull_request:           # Runs on pull requests too
-  workflow_dispatch:      # Allows manual triggers
+    branches: [ "main" ]
+  pull_request:
+  workflow_dispatch:
 
 jobs:
   build:
-    runs-on: windows-latest  # Uses Microsoft's Windows server
+    runs-on: windows-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4  # Downloads your code
+    - uses: actions/checkout@v4.1.1  # Pinned version
 
     - name: Install Node.js
-      uses: actions/setup-node@v4
+      uses: actions/setup-node@v4.0.0  # Pinned version
       with:
-        node-version: '20'  # Use Node.js 20
+        node-version: '20'
 
-    - name: Install Rust (Windows target)
-      uses: actions-rs/toolchain@v1
+    - name: Install Rust
+      uses: actions-rs/toolchain@v1.0.6  # Pinned version
       with:
         profile: minimal
-        target: x86_64-pc-windows-gnu  # Windows compatibility
+        target: x86_64-pc-windows-gnu
         override: true
 
     - name: Build with Tauri
-      uses: tauri-apps/tauri-action@v0
+      uses: tauri-apps/tauri-action@v0.5.0  # Pinned version
       with:
-        target: x86_64-pc-windows-gnu  # Build for Windows
-        args: --verbose  # Show detailed logs
+        target: x86_64-pc-windows-gnu
+        args: --verbose
 
     - name: Upload Artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4.3.3  # Pinned version
       with:
         name: Windows-App
         path: |
