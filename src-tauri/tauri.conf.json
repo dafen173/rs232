@@ -29,5 +29,22 @@
       "icons/icon.icns",
       "icons/icon.ico"
     ]
+  },
+
+
+  
+  "tauri": {
+    "bundle": {
+      "windows": {
+        "wix": {
+          "enabled": false  // Disables WIX installer
+        },
+        "nsis": {
+          "enabled": false  // Optional: Also disable NSIS
+        }
+      }
+    }
   }
+
+  
 }
