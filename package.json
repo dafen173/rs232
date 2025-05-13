@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "tauri dev",
-    "build": "tauri build",
-    "tauri": "tauri"
+    "build": "vite build",
+    "tauri:build": "tauri build" 
   },
   "dependencies": {
     "@tauri-apps/api": "^2"
