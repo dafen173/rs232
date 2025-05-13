@@ -18,12 +18,12 @@ jobs:
         node-version: '20'
         cache: 'npm'
 
-    - name: Install Rust
+    - name: Install Rust (MSVC toolchain)
       uses: actions-rs/toolchain@v1
       with:
         profile: minimal
         toolchain: stable
-        target: x86_64-pc-windows-gnu
+        target: x86_64-pc-windows-msvc
         override: true
 
     - name: Cache dependencies
@@ -40,22 +40,15 @@ jobs:
         npm install @tauri-apps/cli
 
     - name: Build frontend
-      shell: bash
-      run: |
-        npm run build 
+      run: npm run build
 
     - name: Build Tauri app
-      env:
-        CARGO_TARGET_X86_64_PC_WINDOWS_GNU_LINKER: x86_64-w64-mingw32-gcc
-        RUSTFLAGS: "-C target-feature=+crt-static"
-      run: |
-        Remove-Item -Recurse -Force src-tauri/target -ErrorAction SilentlyContinue
-        npx tauri build --target x86_64-pc-windows-gnu --verbose
+      run: npx tauri build --target x86_64-pc-windows-msvc --verbose
 
     - name: Upload Artifact
       uses: actions/upload-artifact@v4
       with:
         name: Windows-App
         path: |
-          src-tauri/target/x86_64-pc-windows-gnu/release/*.exe
-          src-tauri/target/x86_64-pc-windows-gnu/release/bundle/msi/*.msi
+          src-tauri/target/x86_64-pc-windows-msvc/release/*.exe
+          src-tauri/target/x86_64-pc-windows-msvc/release/bundle/msi/*.msi
