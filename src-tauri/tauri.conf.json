@@ -4,10 +4,10 @@
   "version": "0.1.0",
   "identifier": "com.nikan.optomacontroller",
   "build": {
-    "frontendDist": "../src",
     "devUrl": "http://localhost:3000",
     "beforeDevCommand": "npm run dev",
-    "beforeBuildCommand": "npm run build"
+    "beforeBuildCommand": "",
+    "frontendDist": "../dist"
   },
   "app": {
     "windows": [

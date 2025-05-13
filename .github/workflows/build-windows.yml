@@ -40,7 +40,9 @@ jobs:
         npm install @tauri-apps/cli
 
     - name: Build frontend
-      run: npm run build
+      shell: bash
+      run: |
+        npm run build 
 
     - name: Build Tauri app
       env:
