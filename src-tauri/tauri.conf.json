@@ -1,50 +1,23 @@
 {
   "$schema": "https://schema.tauri.app/config/2",
+  "identifier": "com.yourcompany.optomacontroller",
   "productName": "optoma-controller",
   "version": "0.1.0",
-  "identifier": "y",
   "build": {
-    "frontendDist": "../src"
+    "distDir": "../src"
   },
-  "app": {
-    "withGlobalTauri": true,
-    "windows": [
-      {
-        "title": "optoma-controller",
-        "width": 800,
-        "height": 600
-      }
-    ],
-    "security": {
-      "csp": null
+  "windows": [
+    {
+      "title": "optoma-controller",
+      "width": 800,
+      "height": 600
     }
-  },
+  ],
   "bundle": {
-    "active": true,
-    "targets": "all",
     "icon": [
       "icons/32x32.png",
       "icons/128x128.png",
-      "icons/128x128@2x.png",
-      "icons/icon.icns",
       "icons/icon.ico"
     ]
-  },
-
-
-  
-  "tauri": {
-    "bundle": {
-      "windows": {
-        "wix": {
-          "enabled": false  // Disables WIX installer
-        },
-        "nsis": {
-          "enabled": false  // Optional: Also disable NSIS
-        }
-      }
-    }
   }
-
-  
 }
