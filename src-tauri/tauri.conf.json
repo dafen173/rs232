@@ -2,7 +2,7 @@
   "$schema": "../node_modules/@tauri-apps/cli/config.schema.json",
   "productName": "optoma-controller",
   "version": "0.1.0",
-  "identifier": "com.tauri.dev",
+  "identifier": "com.nikan.optomacontroller",
   "build": {
     "frontendDist": "../src",
     "devUrl": "http://localhost:3000",
